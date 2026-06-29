@@ -6,7 +6,8 @@ A colorful, animated movie discovery web app where **trailers play inline when y
 
 🔗 Live demo:https://reelix-f4l5-5gl8u8ka0-sugan2.vercel.app/#trending
 
-![Reelix preview](./screenshot.png)
+![Reelix preview]<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/063de290-66c9-4a9f-8ee9-9dc0d2424fa8" />
+)
 
 ---
 
