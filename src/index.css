@@ -1,0 +1,74 @@
+:root {
+  --bg: #0a0612;
+  --bg-soft: #140b22;
+  --surface: #1a1029;
+  --text: #f4eefb;
+  --text-dim: #a99bc4;
+  --magenta: #ff2e93;
+  --violet: #a855f7;
+  --cyan: #00e5ff;
+  --amber: #ffb627;
+  --radius: 14px;
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Ambient animated color blobs behind everything */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora span {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: drift 22s ease-in-out infinite;
+}
+.aurora span:nth-child(1) { background: var(--magenta); top: -10%; left: -5%; animation-delay: 0s; }
+.aurora span:nth-child(2) { background: var(--cyan); bottom: -15%; right: -5%; animation-delay: -7s; }
+.aurora span:nth-child(3) { background: var(--violet); top: 30%; left: 40%; animation-delay: -14s; }
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(8vw, 6vh) scale(1.15); }
+  66% { transform: translate(-6vw, -4vh) scale(0.9); }
+}
+
+.app { position: relative; min-height: 100vh; }
+
+/* Gradient text helper */
+.grad-text {
+  background: linear-gradient(100deg, var(--magenta), var(--violet) 45%, var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+::-webkit-scrollbar { height: 8px; width: 8px; }
+::-webkit-scrollbar-thumb { background: #2c1d44; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #3d2a5e; }
+
+button { font-family: inherit; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora span { animation: none; }
+  * { scroll-behavior: auto; }
+}

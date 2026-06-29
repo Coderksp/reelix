@@ -1,0 +1,21 @@
+{
+  "name": "reelix",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A colorful movie discovery app with inline trailer previews. Built with React, Vite, Framer Motion and the TMDB API.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^11.3.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.3.4"
+  }
+}
