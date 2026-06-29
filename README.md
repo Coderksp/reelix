@@ -4,7 +4,7 @@ A colorful, animated movie discovery web app where **trailers play inline when y
 
 > Built with React, Vite, Framer Motion, and the TMDB API.
 
-**🔗 Live demo:** _add your Vercel URL here after deploying_
+🔗 Live demo:https://reelix-f4l5-5gl8u8ka0-sugan2.vercel.app/#trending
 
 ![Reelix preview](./screenshot.png)
 
