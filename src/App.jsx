@@ -4,6 +4,8 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Row from './components/Row'
 import SearchResults from './components/SearchResults'
+import MovieModal from './components/MovieModal'
+import { MovieModalContext } from './movieModal'
 import {
   CATEGORIES,
   fetchCategory,
@@ -18,6 +20,7 @@ export default function App() {
   const [results, setResults] = useState([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [selected, setSelected] = useState(null)
 
   useEffect(() => {
     let cancelled = false
@@ -52,6 +55,7 @@ export default function App() {
   }, [])
 
   return (
+    <MovieModalContext.Provider value={setSelected}>
     <div className="app">
       <div className="aurora"><span /><span /><span /></div>
       <Navbar onSearch={handleSearch} />
@@ -105,6 +109,9 @@ export default function App() {
             style={{ color: 'var(--cyan)' }}>TMDB</a>
         </p>
       </footer>
+
+      <MovieModal movie={selected} onClose={() => setSelected(null)} />
     </div>
+    </MovieModalContext.Provider>
   )
 }

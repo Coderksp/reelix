@@ -1,12 +1,14 @@
 import { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { IMG, fetchTrailerKey } from '../api/tmdb'
+import { useOpenMovie } from '../movieModal'
 
 export default function MovieCard({ movie, index }) {
   const [hovered, setHovered] = useState(false)
   const [trailerKey, setTrailerKey] = useState(null)
   const [showFrame, setShowFrame] = useState(false)
   const hoverTimer = useRef(null)
+  const openMovie = useOpenMovie()
 
   const year = movie.release_date ? movie.release_date.slice(0, 4) : ''
   const rating = movie.vote_average ? movie.vote_average.toFixed(1) : null
@@ -41,6 +43,10 @@ export default function MovieCard({ movie, index }) {
       transition={{ duration: 0.5, delay: (index % 8) * 0.04 }}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
+      onClick={() => openMovie(movie)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter') openMovie(movie) }}
       animate={{ scale: hovered ? 1.08 : 1, zIndex: hovered ? 20 : 1 }}
       style={{
         position: 'relative',

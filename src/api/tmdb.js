@@ -61,3 +61,19 @@ export async function searchMovies(query) {
   const data = await get('/search/movie', { query, include_adult: false })
   return data.results.filter((m) => m.poster_path || m.backdrop_path)
 }
+
+// Full detail payload for the modal: overview, runtime, genres, cast and reviews
+// all in one request via TMDB's append_to_response.
+const detailsCache = new Map()
+export async function fetchMovieDetails(movieId) {
+  if (detailsCache.has(movieId)) return detailsCache.get(movieId)
+  const data = await get(`/movie/${movieId}`, {
+    append_to_response: 'credits,reviews',
+  })
+  detailsCache.set(movieId, data)
+  return data
+}
+
+// Letterboxd has no public API, but this redirect resolves a TMDB id to the
+// film's Letterboxd page. Handy for a "view reviews on Letterboxd" link.
+export const letterboxdUrl = (tmdbId) => `https://letterboxd.com/tmdb/${tmdbId}/`
